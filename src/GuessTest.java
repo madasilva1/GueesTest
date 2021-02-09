@@ -15,19 +15,19 @@ public class GuessTest extends Frame implements ActionListener{
                 dispose();
             }
         });
-       // setLayout(new FlowLayout());// "super" Frame, which is a Container, sets its layout to FlowLayout to arrange
+       setLayout(new FlowLayout());// "super" Frame, which is a Container, sets its layout to FlowLayout to arrange
         // the components from left-to-right, and flow to next row from top-to-bottom.
 // Declare a Label component
         Label lblTitle = new Label("I have randomly number from 1 to 100, enter a Number");
         add(lblTitle);
         tfResolted = new TextField(""+"",10);
         tfResolted.setBounds(50,50,150,20);
-        tfResolted.setEditable(false);
+        tfResolted.setEditable(true);
         add(tfResolted);
 
         tfNumber = new TextField(count + "",10);// construct the TextField component with initial text
         tfNumber.setBounds(50,100,150,20);
-        tfNumber.setEditable(true);// set to read-only
+        tfNumber.setEditable(false);// set to read-only
         add(tfNumber);// "super" Frame container adds Button component
 // Declare a Button component
        btnNumber  = new Button("count");
@@ -56,13 +56,19 @@ setSize(400,300);// "super" Frame sets its initial window size
     @Override
 public void actionPerformed(ActionEvent evt){
         int randomNumber = (int) (Math.random() * 100)+1;
-        String tf = tfNumber.getText();
-        int a = Integer.parseInt(tf);
-        if(evt.getSource() == btnNumber){
-            tfNumber.setText(tf + "") ;
-        }
 
-        // Display the counter value on the TextField tfCount
-     // Convert int to String
+        String tfr = tfResolted.getText();
+        int a = Integer.parseInt(tfr);
+
+        String  str1 = "Biger than that";
+        String str2 = "Smaller than that";
+
+        if(evt.getSource() == btnNumber && randomNumber > a){
+           tfNumber.setText(str1);
+        }else if(evt.getSource() == btnNumber && randomNumber < a){
+            tfNumber.setText(str2);
+        }
+        // Display the text str1 on the TextField tfNumber
+
     }
 }
