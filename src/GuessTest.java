@@ -2,10 +2,14 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class GuessTest extends Frame implements ActionListener{
-    private  final TextField tfNumber;//declare a text field component
+    //declare text field component
+    private  final TextField tfNumber;
     private final TextField tfResolted;
-    private  int count = 0;
-   private final Button btnNumber;
+    private final TextField tfentered;
+    //declare Buttons
+    private final Button btnNumber;
+    private  int count  = 0;
+    int randomNumber = (int) (Math.random() * 100)+1;
     // Constructor to setup GUI components and event handlers
     public GuessTest(){
         addWindowListener(new WindowAdapter() {
@@ -15,7 +19,7 @@ public class GuessTest extends Frame implements ActionListener{
                 dispose();
             }
         });
-       setLayout(new FlowLayout());// "super" Frame, which is a Container, sets its layout to FlowLayout to arrange
+      // setLayout(new FlowLayout());// "super" Frame, which is a Container, sets its layout to FlowLayout to arrange
         // the components from left-to-right, and flow to next row from top-to-bottom.
 // Declare a Label component
         Label lblTitle = new Label("I have randomly number from 1 to 100, enter a Number");
@@ -25,12 +29,17 @@ public class GuessTest extends Frame implements ActionListener{
         tfResolted.setEditable(true);
         add(tfResolted);
 
+        tfentered = new TextField(""+"",10);
+        tfentered.setBounds(50,150,150,20);
+        tfentered.setEditable(false);
+        add(tfentered);
+
         tfNumber = new TextField(count + "",10);// construct the TextField component with initial text
         tfNumber.setBounds(50,100,150,20);
         tfNumber.setEditable(false);// set to read-only
         add(tfNumber);// "super" Frame container adds Button component
 // Declare a Button component
-       btnNumber  = new Button("count");
+       btnNumber  = new Button("Press");
        btnNumber.setBounds(220,45,50,30);
         add(btnNumber);// "super" Frame container adds Button component
 btnNumber.addActionListener(this);
@@ -39,7 +48,7 @@ btnNumber.addActionListener(this);
         //   an ActionEvent handler called actionPerformed().
         // Clicking "btnCount" invokes actionPerformed().
 
-setTitle("guess counter");// "super" Frame sets its title
+//setTitle("guess counter,randomly number from 1 to 100");// "super" Frame sets its title
 setSize(400,300);// "super" Frame sets its initial window size
         setLayout(null);
         setVisible(true);// "super" Frame shows
@@ -55,19 +64,22 @@ setSize(400,300);// "super" Frame sets its initial window size
 // ActionEvent handler - Called back upon button-click.
     @Override
 public void actionPerformed(ActionEvent evt){
-        int randomNumber = (int) (Math.random() * 100)+1;
+
 
         String tfr = tfResolted.getText();
         int a = Integer.parseInt(tfr);
-
-        String  str1 = "Biger than that";
+        String str0 = "Wow!, you won!";
+        String  str1 = "Bigger than that";
         String str2 = "Smaller than that";
 
         if(evt.getSource() == btnNumber && randomNumber > a){
            tfNumber.setText(str1);
         }else if(evt.getSource() == btnNumber && randomNumber < a){
             tfNumber.setText(str2);
+        }else if (evt.getSource() == btnNumber && randomNumber == a){
+            tfNumber.setText(str0);
         }
+
         // Display the text str1 on the TextField tfNumber
 
     }
