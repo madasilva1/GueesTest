@@ -1,16 +1,26 @@
+import javax.swing.*;
 import java.awt.*;
+import java.awt.BorderLayout;
 import java.awt.event.*;
 import java.util.ArrayList;
 
 public class GuessTest extends Frame implements ActionListener {
 
     //declare text field component
-    private final TextField tfNumber;
+
     private final TextField tfResolted;
     private final TextField tfentered;
+
+   // JPanel panel = new JPanel(new BorderLayout());
+    private final TextField tfNumber;
+   // JLabel tfNumbe = new JLabel("sample text");
+   // Label lblTitle;
     //declare Buttons
     private final Button btnNumber;
     private int  count = 0;
+    //declare a Label
+
+    //declare array to show up entered numbers
     ArrayList<Integer> element = new ArrayList<>();
     int randomNumber = (int) (Math.random() * 100) + 1;
 
@@ -23,11 +33,23 @@ public class GuessTest extends Frame implements ActionListener {
                 dispose();
             }
         });
-        // setLayout(new FlowLayout());// "super" Frame, which is a Container, sets its layout to FlowLayout to arrange
+         setLayout(new FlowLayout());// "super" Frame, which is a Container, sets its layout to FlowLayout to arrange
         // the components from left-to-right, and flow to next row from top-to-bottom.
 // Declare a Label component
-        Label lblTitle = new Label("I have randomly number from 1 to 100, enter a Number");
+        Label  LbTitle = new Label("you have random");
+        add(LbTitle);
+        LbTitle.setVisible(true);
+        LbTitle.setBounds(300,200,200,100);
+        LbTitle.setFont(new Font(LbTitle.getName(), Font.PLAIN, 18));
+
+
+       Label lblTitle  = new Label("you have choice it");
         add(lblTitle);
+        lblTitle.setBounds(220,120,200,100);
+         lblTitle.setVisible(true);
+        lblTitle.setFont(new Font(lblTitle.getName(), Font.PLAIN, 18));
+
+
 
         tfResolted = new TextField("" + "", 10);
         tfResolted.setBounds(50, 50, 150, 20);
@@ -63,9 +85,12 @@ public class GuessTest extends Frame implements ActionListener {
     // The entry main() method
     public static void main(String[] args) {
         // Invoke the constructor to setup the GUI, by allocating an instance
-        new GuessTest();
-         
+        //new GuessTest();
         // or simply "new AWTCounter();" for an anonymous instance
+        GuessTest mylabele = new GuessTest();
+        mylabele.setTitle("Random numbers");
+        mylabele.setSize(500,500);
+        mylabele.setVisible(true);
     }
 
     // ActionEvent handler - Called back upon button-click.
@@ -82,10 +107,10 @@ public class GuessTest extends Frame implements ActionListener {
 
                             if (evt.getSource() == btnNumber && randomNumber > a) {
                                 tfNumber.setText(str1);
-                                // element.add(a) ;
+
                             } else if (evt.getSource() == btnNumber && randomNumber < a) {
                                 tfNumber.setText(str2);
-                                //element.add(a) ;
+
                             } else if (evt.getSource() == btnNumber && randomNumber == a) {
                                 tfNumber.setText(str0);
 
@@ -93,10 +118,6 @@ public class GuessTest extends Frame implements ActionListener {
                             element.add(a) ;
                             tfentered.setText(element.toString().replace("[", "").replace("]", ""));
 
-
-
-                // Display the text str1 on the TextField tfNumber
-
-
+                            // Display the text and entered numbers  on the TextField tfentered
         }
     }
