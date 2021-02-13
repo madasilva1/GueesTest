@@ -10,8 +10,7 @@ public class GuessTest extends Frame implements ActionListener {
 
     private final TextField tfResolted;
     private final TextField tfentered;
-
-   // JPanel panel = new JPanel(new BorderLayout());
+    private final TextField tfStill;
     private final TextField tfNumber;
    // JLabel tfNumbe = new JLabel("sample text");
    // Label lblTitle;
@@ -39,15 +38,15 @@ public class GuessTest extends Frame implements ActionListener {
         Label  LbTitle = new Label("you have random");
         add(LbTitle);
         LbTitle.setVisible(true);
-        LbTitle.setBounds(300,200,200,100);
-        LbTitle.setFont(new Font(LbTitle.getName(), Font.PLAIN, 18));
+        //LbTitle.setBounds(200,70,200,100);
+        //LbTitle.setFont(new Font(LbTitle.getName(), Font.PLAIN, 18));
 
 
-       Label lblTitle  = new Label("you have choice it");
-        add(lblTitle);
-        lblTitle.setBounds(220,120,200,100);
-         lblTitle.setVisible(true);
-        lblTitle.setFont(new Font(lblTitle.getName(), Font.PLAIN, 18));
+       //Label lblTitle  = new Label("you have choice it");
+        //add(lblTitle);
+
+       //  lblTitle.setVisible(true);
+       // lblTitle.setFont(new Font(lblTitle.getName(), Font.PLAIN, 18));
 
 
 
@@ -57,11 +56,16 @@ public class GuessTest extends Frame implements ActionListener {
         add(tfResolted);
 
         tfentered = new TextField("" + "", 10);
-        tfentered.setBounds(50, 150, 150, 20);
+        tfentered.setBounds(50, 150, 210, 20);
         tfentered.setEditable(false);
         add(tfentered);
 
-        tfNumber = new TextField(count + "", 10);// construct the TextField component with initial text
+        tfStill = new TextField("" + "",10);
+        tfStill.setBounds(50,200,150,20);
+        tfStill.setEditable(false);
+        add(tfStill);
+
+        tfNumber = new TextField( "", 10);// construct the TextField component with initial text
         tfNumber.setBounds(50, 100, 150, 20);
         tfNumber.setEditable(false);// set to read-only
         add(tfNumber);// "super" Frame container adds Button component
@@ -88,7 +92,8 @@ public class GuessTest extends Frame implements ActionListener {
         //new GuessTest();
         // or simply "new AWTCounter();" for an anonymous instance
         GuessTest mylabele = new GuessTest();
-        mylabele.setTitle("Random numbers");
+        mylabele.setTitle("Random numbers from 1 to 100, you have 10 choices");
+        mylabele.setFont(new Font(mylabele.getName(), Font.PLAIN, 14));
         mylabele.setSize(500,500);
         mylabele.setVisible(true);
     }
@@ -104,20 +109,24 @@ public class GuessTest extends Frame implements ActionListener {
                             String str0 = "Wow!, you won!";
                             String str1 = "Bigger than that";
                             String str2 = "Smaller than that";
-
-                            if (evt.getSource() == btnNumber && randomNumber > a) {
+                            String str3 = "You lost";
+                            if (evt.getSource() == btnNumber && randomNumber > a && count < 10) {
                                 tfNumber.setText(str1);
 
-                            } else if (evt.getSource() == btnNumber && randomNumber < a) {
+                            } else if (evt.getSource() == btnNumber && randomNumber < a && count < 10) {
                                 tfNumber.setText(str2);
 
-                            } else if (evt.getSource() == btnNumber && randomNumber == a) {
+                            } else if (evt.getSource() == btnNumber && randomNumber == a && count < 10) {
                                 tfNumber.setText(str0);
 
+                            }
+                            else{
+                                tfStill.setText(str3);
+                               
                             }
                             element.add(a) ;
                             tfentered.setText(element.toString().replace("[", "").replace("]", ""));
 
-                            // Display the text and entered numbers  on the TextField tfentered
+            count++;                // Display the text and entered numbers  on the TextField tfentered
         }
     }
