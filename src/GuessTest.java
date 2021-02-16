@@ -119,7 +119,7 @@ public class GuessTest extends Frame implements ActionListener {
 
                             }
                             else if( a < 0 || a > 100){
-                                tfNumber.setText(str4);
+                                tfResolted.setText(str4);
                             }
                             else if( count == 10 && randomNumber != a && a < 100 && a > 0){
                                 tfStill.setText(""+str3);
