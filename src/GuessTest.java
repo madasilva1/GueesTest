@@ -107,17 +107,21 @@ public class GuessTest extends Frame implements ActionListener {
                             String str1 = "Bigger than that";
                             String str2 = "Smaller than that";
                             String str3 = "You lost";
-                            if (evt.getSource() == btnNumber && randomNumber > a && count < 10) {
+                            String str4 = "Number out of range,must between 1 and 100";
+                            if (evt.getSource() == btnNumber && randomNumber > a && count < 10 && a < 100 && a > 0) {
                                 tfNumber.setText(""+str1);
 
-                            } else if (evt.getSource() == btnNumber && randomNumber < a && count < 10) {
+                            } else if (evt.getSource() == btnNumber && randomNumber < a && count < 10 && a < 100 && a > 0) {
                                 tfNumber.setText(""+str2);
 
-                            } else if (evt.getSource() == btnNumber && randomNumber == a && count < 10) {
+                            } else if (evt.getSource() == btnNumber && randomNumber == a && count < 10 ) {
                                 tfNumber.setText(""+str0);
 
                             }
-                            else{
+                            else if( a < 0 || a > 100){
+                                tfNumber.setText(str4);
+                            }
+                            else if( count == 10 && randomNumber != a && a < 100 && a > 0){
                                 tfStill.setText(""+str3);
 
                             }
