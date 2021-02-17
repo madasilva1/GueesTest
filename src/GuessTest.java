@@ -23,6 +23,7 @@ public class GuessTest extends Frame implements ActionListener {
     ArrayList<Integer> element = new ArrayList<>();
     int randomNumber = (int) (Math.random() * 100) + 1;
 
+
     // Constructor to setup GUI components and event handlers
     public GuessTest() {
         addWindowListener(new WindowAdapter() {
@@ -32,6 +33,7 @@ public class GuessTest extends Frame implements ActionListener {
                 dispose();
             }
         });
+        System.out.println("random number before reset button pressed"+  + randomNumber);
 // Declare a Label component
        // Label  LbTitle = new Label("you have random");
        // add(LbTitle);
@@ -95,13 +97,19 @@ public class GuessTest extends Frame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent evt) {
 
+        String tfr = tfResolted.getText();
+        int a = Integer.parseInt(tfr);
+        System.out.println("a before reset button pressed"+ a);
+
                               if(evt.getSource() == resset){
                                   clearfields();
                                   element.clear();
 
+
+
+                               System.out.println("a and random  after reset pressed"+ a + ""+ randomNumber);
                               }
-                            String tfr = tfResolted.getText();
-                            int a = Integer.parseInt(tfr);
+
 
                             String str0 = "Wow!, you won!";
                             String str1 = "Bigger than that";
@@ -129,14 +137,18 @@ public class GuessTest extends Frame implements ActionListener {
                             element.add(a);
                             tfentered.setText(element.toString().replace("[", "").replace("]", ""));
 
-            count++;                // Display the text and entered numbers  on the TextField tfentered
+            count++;
+            // Display the text and entered numbers  on the TextField tfentered
         }
+
         private void clearfields( ){
            // this.remove(element.this);
              tfResolted.setText("");
              tfentered.setText("");
              tfStill.setText("");
              tfNumber.setText("");
+
+
          }
         }
 
