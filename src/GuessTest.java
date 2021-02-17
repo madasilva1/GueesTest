@@ -103,10 +103,6 @@ public class GuessTest extends Frame implements ActionListener {
 
                               if(evt.getSource() == resset){
                                   clearfields();
-                                  element.clear();
-
-
-
                                System.out.println("a and random  after reset pressed"+ a + ""+ randomNumber);
                               }
 
@@ -126,10 +122,10 @@ public class GuessTest extends Frame implements ActionListener {
                                 tfStill.setText(""+str0);
 
                             }
-                            else if( a < 0 || a > 100){
+                            else if( evt.getSource() == btnNumber && a < 0 || a > 100){
                                 tfStill.setText(str4);
                             }
-                            else if( count == 10 && randomNumber != a && a < 100 && a > 0){
+                            else if(evt.getSource() == btnNumber && count == 10 && randomNumber != a && a < 100 && a > 0){
                                 tfStill.setText(""+str3);
 
                             }
@@ -147,7 +143,8 @@ public class GuessTest extends Frame implements ActionListener {
              tfentered.setText("");
              tfStill.setText("");
              tfNumber.setText("");
-
+            element.clear();
+            count = 0;
 
          }
         }
