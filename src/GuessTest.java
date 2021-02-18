@@ -128,7 +128,7 @@ public class GuessTest extends Frame implements ActionListener {
 
                             } else if (evt.getSource() == btnNumber && randomNumber == a && count < 10 ) {
                                 tfStill.setText(""+str0);
-
+                                tfResolted.setEditable(false);
 
                             }
                             else if( evt.getSource() == btnNumber && a < 1 || a > 100){
@@ -138,6 +138,7 @@ public class GuessTest extends Frame implements ActionListener {
                             }
                             else if(evt.getSource() == btnNumber && count == 10 && randomNumber != a && a < 100 && a > 0){
                                 tfStill.setText(""+str3);
+                                tfResolted.setEditable(false);
 
                             }
 
@@ -157,6 +158,7 @@ public class GuessTest extends Frame implements ActionListener {
              ctr++;
              element.clear();
              count = 0;
+            tfResolted.setEditable(true);
 
          }
         }
