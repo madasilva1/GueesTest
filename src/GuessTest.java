@@ -52,7 +52,7 @@ public class GuessTest extends Frame implements ActionListener {
         add(tfentered);
 
         tfStill = new TextField("" + "",10);
-        tfStill.setBounds(50,200,300,20);
+        tfStill.setBounds(50,200,360,20);
         tfStill.setEditable(false);
         add(tfStill);
 
@@ -62,8 +62,8 @@ public class GuessTest extends Frame implements ActionListener {
         add(tfNumber);// "super" Frame container adds Button component
 
 // Declare a Button component
-        btnNumber = new Button("Press");
-        btnNumber.setBounds(220, 45, 50, 30);
+        btnNumber = new Button("Enter");
+        btnNumber.setBounds(220, 45, 55, 30);
         add(btnNumber);// "super" Frame container adds Button component
         btnNumber.addActionListener(this);
         // "btnCount" is the source object that fires an ActionEvent when clicked.
@@ -72,7 +72,7 @@ public class GuessTest extends Frame implements ActionListener {
         // Clicking "btnCount" invokes actionPerformed().
 
         //initialise button resset
-      resset = new Button("Resset");
+      resset = new Button("Reset");
       resset.setBounds(220,95,60,30);
       add(resset);
       resset.addActionListener(this);
@@ -110,7 +110,7 @@ public class GuessTest extends Frame implements ActionListener {
                             String str0 = "Wow!, you won!, press reset for new game";
                             String str1 = "Bigger than that";
                             String str2 = "Smaller than that";
-                            String str3 = "You lost, press reset for new game";
+                            String str3 = "You lost, press reset for new game."+" the number was:" + " "+ randomNumber;
                             String str4 = "Number out of range,must between 1 and 100";
                             if (evt.getSource() == btnNumber && randomNumber > a && count < 10 && a < 100 && a > 0) {
                                 tfNumber.setText(""+str1);
