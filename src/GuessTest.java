@@ -107,10 +107,10 @@ public class GuessTest extends Frame implements ActionListener {
                               }
 
 
-                            String str0 = "Wow!, you won!";
+                            String str0 = "Wow!, you won!, press reset for new game";
                             String str1 = "Bigger than that";
                             String str2 = "Smaller than that";
-                            String str3 = "You lost";
+                            String str3 = "You lost, press reset for new game";
                             String str4 = "Number out of range,must between 1 and 100";
                             if (evt.getSource() == btnNumber && randomNumber > a && count < 10 && a < 100 && a > 0) {
                                 tfNumber.setText(""+str1);
@@ -131,7 +131,7 @@ public class GuessTest extends Frame implements ActionListener {
 
 
                             }
-                            else if( evt.getSource() == btnNumber && a < 0 || a > 100){
+                            else if( evt.getSource() == btnNumber && a < 1 || a > 100){
                                 tfStill.setText(str4);
                                 element.add(a);
                                 ctr++;
@@ -149,17 +149,14 @@ public class GuessTest extends Frame implements ActionListener {
         }
 
         private  void clearfields( ){
-           // this.remove(element.this);
+          randomNumber =(int) (Math.random() * 100) + 1;
              tfResolted.setText("");
              tfentered.setText("");
              tfStill.setText("");
              tfNumber.setText("");
-             //int index = element.size() -1 ;
-            //element.remove(index);
+             ctr++;
              element.clear();
-
-
-            count = 0;
+             count = 0;
 
          }
         }
