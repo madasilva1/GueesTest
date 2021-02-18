@@ -52,7 +52,7 @@ public class GuessTest extends Frame implements ActionListener {
         add(tfentered);
 
         tfStill = new TextField("" + "",10);
-        tfStill.setBounds(50,200,360,20);
+        tfStill.setBounds(50,200,390,20);
         tfStill.setEditable(false);
         add(tfStill);
 
@@ -71,7 +71,7 @@ public class GuessTest extends Frame implements ActionListener {
         //   an ActionEvent handler called actionPerformed().
         // Clicking "btnCount" invokes actionPerformed().
 
-        //initialise button resset
+        //initialise button reset
       resset = new Button("Reset");
       resset.setBounds(220,95,60,30);
       add(resset);
@@ -90,7 +90,7 @@ public class GuessTest extends Frame implements ActionListener {
         mylabele.setFont(new Font(mylabele.getName(), Font.PLAIN, 14));
         mylabele.setSize(500,500);
         mylabele.setVisible(true);
-       // mylabele.add(mylabele.resset);
+
     }
 
     // ActionEvent handler - Called back upon button-click.
@@ -98,68 +98,78 @@ public class GuessTest extends Frame implements ActionListener {
     public void actionPerformed(ActionEvent evt) {
 
         String tfr = tfResolted.getText();
-        int a = Integer.parseInt(tfr);
-        System.out.println("a before reset button pressed"+ a);
-
-                              if(evt.getSource() == resset){
-                                  clearfields();
-                               System.out.println("a and random  after reset pressed"+ a + ""+ randomNumber);
-                              }
+        String str4 = "Number out of range or illegal entry,must between 1 and 100";
+        while (tfr.matches("[a-zA-Z]") && evt.getSource() == btnNumber ) {
+            tfStill.setText(str4);
+            tfr = "";
 
 
-                            String str0 = "Wow!, you won!, press reset for new game";
-                            String str1 = "Bigger than that";
-                            String str2 = "Smaller than that";
-                            String str3 = "You lost, press reset for new game."+" the number was:" + " "+ randomNumber;
-                            String str4 = "Number out of range,must between 1 and 100";
-                            if (evt.getSource() == btnNumber && randomNumber > a && count < 10 && a < 100 && a > 0) {
-                                tfNumber.setText(""+str1);
-                                element.add(a);
-                                if(ctr !=0){
-                                    tfStill.setText("");
-                                }
+            }
 
-                            } else if (evt.getSource() == btnNumber && randomNumber < a && count < 10 && a < 100 && a > 0) {
-                                tfNumber.setText(""+str2);
-                                element.add(a);
-                                if(ctr !=0){
-                                    tfStill.setText("");
-                                }
+            int a = Integer.parseInt(tfr);
+            System.out.println("a before reset button pressed" + a);
 
-                            } else if (evt.getSource() == btnNumber && randomNumber == a && count < 10 ) {
-                                tfStill.setText(""+str0);
-                                tfResolted.setEditable(false);
-
-                            }
-                            else if( evt.getSource() == btnNumber && a < 1 || a > 100){
-                                tfStill.setText(str4);
-                                element.add(a);
-                                ctr++;
-                            }
-                            else if(evt.getSource() == btnNumber && count == 10 && randomNumber != a && a < 100 && a > 0){
-                                tfStill.setText(""+str3);
-                                tfResolted.setEditable(false);
-
-                            }
+            if (evt.getSource() == resset) {
+                clearfields();
+                System.out.println("a and random  after reset pressed" + a + "" + randomNumber);
+            }
 
 
-                            tfentered.setText(element.toString().replace("[", "").replace("]", ""));
+            String str0 = "Wow!, you won!, press reset for new game";
+            String str1 = "Bigger than that";
+            String str2 = "Smaller than that";
+            String str3 = "You lost, press reset for new game." + " the number was:" + " " + randomNumber;
+
+            if (evt.getSource() == btnNumber && randomNumber > a && count < 10 && a < 100 && a > 0) {
+                tfNumber.setText("" + str1);
+                element.add(a);
+                if (ctr != 0 || tfr != "") {
+                    tfStill.setText("");
+                }
+
+            } else if (evt.getSource() == btnNumber && randomNumber < a && count < 10 && a < 100 && a > 0) {
+                tfNumber.setText("" + str2);
+                element.add(a);
+                if (ctr != 0 || tfr != "") {
+                    tfStill.setText("");
+                }
+
+            } else if (evt.getSource() == btnNumber && randomNumber == a && count < 10) {
+                tfStill.setText( str0);
+                element.add(a);
+                tfResolted.setEditable(false);
+
+            } else if (evt.getSource() == btnNumber && a < 1 || a > 100) {
+                tfStill.setText(str4);
+                element.add(a);
+                ctr++;
+
+            } else if (evt.getSource() == btnNumber && count == 10 && randomNumber != a && a < 100 && a > 0) {
+                tfStill.setText( str3);
+                element.add(a);
+                tfResolted.setEditable(false);
+
+            }
+
+
+            tfentered.setText(element.toString().replace("[", "").replace("]", ""));
 
             count++;
             // Display the text and entered numbers  on the TextField tfentered
-        }
 
-        private  void clearfields( ){
-          randomNumber =(int) (Math.random() * 100) + 1;
-             tfResolted.setText("");
-             tfentered.setText("");
-             tfStill.setText("");
-             tfNumber.setText("");
-             ctr++;
-             element.clear();
-             count = 0;
+    }
+        private void clearfields () {
+            randomNumber = (int) (Math.random() * 100) + 1;
+            tfResolted.setText("");
+            tfentered.setText("");
+            tfStill.setText("");
+            tfNumber.setText("");
+            ctr++;
+            element.clear();
+            count = 0;
             tfResolted.setEditable(true);
 
-         }
+        }
+
         }
 
