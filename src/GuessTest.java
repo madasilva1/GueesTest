@@ -21,8 +21,9 @@ public class GuessTest extends Frame implements ActionListener {
     private  int ctr = 0;
     //declare array to show up entered numbers
     ArrayList<Integer> element = new ArrayList<>();
-    int randomNumber = (int) (Math.random() * 100) + 1;
 
+    //produce a random number to be guessed
+    int randomNumber = (int) (Math.random() * 100) + 1;
 
     // Constructor to setup GUI components and event handlers
     public GuessTest() {
@@ -35,10 +36,6 @@ public class GuessTest extends Frame implements ActionListener {
         });
         System.out.println("random number before reset button pressed"+  + randomNumber);
 // Declare a Label component
-       // Label  LbTitle = new Label("you have random");
-       // add(LbTitle);
-        //setSize(400, 300);// "super" Frame sets its initial window size
-       // "super" Frame shows
 
         // Declare and add Text Fields
         tfResolted = new TextField("" + "", 10);
@@ -83,29 +80,23 @@ public class GuessTest extends Frame implements ActionListener {
     // The entry main() method
     public static void main(String[] args) {
         // Invoke the constructor to setup the GUI, by allocating an instance
-        //new GuessTest();
-        // or simply "new AWTCounter();" for an anonymous instance
+        // or simply "new Guess" for an anonymous instance
         GuessTest mylabele = new GuessTest();
         mylabele.setTitle("Random numbers from 1 to 100, you have 10 choices");
         mylabele.setFont(new Font(mylabele.getName(), Font.PLAIN, 14));
         mylabele.setSize(500,500);
         mylabele.setVisible(true);
-
     }
-
     // ActionEvent handler - Called back upon button-click.
     @Override
     public void actionPerformed(ActionEvent evt) {
 
         String tfr = tfResolted.getText();
-        String str4 = "Number out of range or illegal entry,must between 1 and 100";
+        String  str5 = "Illegal entry, must to be numbers";
         while (tfr.matches("[a-zA-Z]") && evt.getSource() == btnNumber ) {
-            tfStill.setText(str4);
+            tfStill.setText(str5);
             tfr = "";
-
-
             }
-
             int a = Integer.parseInt(tfr);
             System.out.println("a before reset button pressed" + a);
 
@@ -114,46 +105,40 @@ public class GuessTest extends Frame implements ActionListener {
                 System.out.println("a and random  after reset pressed" + a + "" + randomNumber);
             }
 
-
+             String str4 = "Number out of range ,must between 1 and 100";
             String str0 = "Wow!, you won!, press reset for new game";
             String str1 = "Bigger than that";
             String str2 = "Smaller than that";
             String str3 = "You lost, press reset for new game." + " the number was:" + " " + randomNumber;
 
-            if (evt.getSource() == btnNumber && randomNumber > a && count < 10 && a < 100 && a > 0) {
-                tfNumber.setText("" + str1);
+            if (evt.getSource() == btnNumber && randomNumber > a && count < 10 && a < 100 && a > 0 ) {
+                tfNumber.setText( str1);
                 element.add(a);
-                if (ctr != 0 || tfr != "") {
+                if (ctr != 0 || !tfr.equals("")) {
                     tfStill.setText("");
                 }
 
             } else if (evt.getSource() == btnNumber && randomNumber < a && count < 10 && a < 100 && a > 0) {
                 tfNumber.setText("" + str2);
                 element.add(a);
-                if (ctr != 0 || tfr != "") {
+                if (ctr != 0 || !tfr.equals("")) {
                     tfStill.setText("");
                 }
 
             } else if (evt.getSource() == btnNumber && randomNumber == a && count < 10) {
                 tfStill.setText( str0);
-                element.add(a);
                 tfResolted.setEditable(false);
 
             } else if (evt.getSource() == btnNumber && a < 1 || a > 100) {
                 tfStill.setText(str4);
-                element.add(a);
                 ctr++;
 
             } else if (evt.getSource() == btnNumber && count == 10 && randomNumber != a && a < 100 && a > 0) {
                 tfStill.setText( str3);
                 element.add(a);
                 tfResolted.setEditable(false);
-
             }
-
-
             tfentered.setText(element.toString().replace("[", "").replace("]", ""));
-
             count++;
             // Display the text and entered numbers  on the TextField tfentered
 
